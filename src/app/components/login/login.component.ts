@@ -30,6 +30,7 @@ import { AuthService } from 'src/app/services/auth.service';
                 name="numeroDocumento" 
                 placeholder="Ingresa tu número de documento"
                 required
+                class="form-input"
               >
             </div>
 
@@ -42,6 +43,7 @@ import { AuthService } from 'src/app/services/auth.service';
                   name="password"
                   placeholder="Ingresa tu contraseña"
                   required
+                  class="form-input"
                 >
                 <button 
                   type="button" 
@@ -130,6 +132,7 @@ import { AuthService } from 'src/app/services/auth.service';
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+      width: 100%;
     }
 
     .input-group label {
@@ -137,7 +140,8 @@ import { AuthService } from 'src/app/services/auth.service';
       font-weight: 500;
     }
 
-    .input-group input {
+    .form-input {
+      width: 100%;
       padding: 0.75rem;
       border: 1px solid #ddd;
       border-radius: 0.5rem;
@@ -145,7 +149,7 @@ import { AuthService } from 'src/app/services/auth.service';
       transition: all 0.3s ease;
     }
 
-    .input-group input:focus {
+    .form-input:focus {
       border-color: #1a237e;
       box-shadow: 0 0 0 2px rgba(26, 35, 126, 0.1);
       outline: none;
@@ -153,6 +157,23 @@ import { AuthService } from 'src/app/services/auth.service';
 
     .password-input {
       position: relative;
+      width: 100%;
+    }
+
+    .password-input input {
+      width: 100%;
+      padding: 0.75rem;
+      padding-right: 2.5rem;
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .password-input input:focus {
+      border-color: #1a237e;
+      box-shadow: 0 0 0 2px rgba(26, 35, 126, 0.1);
+      outline: none;
     }
 
     .toggle-password {
@@ -195,6 +216,7 @@ import { AuthService } from 'src/app/services/auth.service';
       font-weight: 500;
       cursor: pointer;
       transition: all 0.3s ease;
+      width: 100%;
     }
 
     .login-button:hover {
