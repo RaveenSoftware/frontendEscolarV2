@@ -22,65 +22,65 @@ import { RouterModule } from '@angular/router';
         <div class="menu-section">
           <a [routerLink]="'/admin-dashboard'" routerLinkActive="active" class="menu-item">
             <i class="fas fa-home"></i>
-            <span *ngIf="!isCollapsed">Dashboard</span>
+            <span *ngIf="!isCollapsed">Inicio</span>
           </a>
 
-          <div class="section-title" *ngIf="!isCollapsed">ACADEMIC</div>
+          <div class="section-title" *ngIf="!isCollapsed">ACADÉMICO</div>
           <a [routerLink]="'/students'" routerLinkActive="active" class="menu-item">
             <i class="fas fa-user-graduate"></i>
-            <span *ngIf="!isCollapsed">Students</span>
+            <span *ngIf="!isCollapsed">Estudiantes</span>
           </a>
           <a [routerLink]="'/teacher'" routerLinkActive="active" class="menu-item">
             <i class="fas fa-chalkboard-teacher"></i>
-            <span *ngIf="!isCollapsed">Teachers</span>
+            <span *ngIf="!isCollapsed">Docentes</span>
           </a>
           <a [routerLink]="'/cursos'" routerLinkActive="active" class="menu-item">
             <i class="fas fa-book"></i>
-            <span *ngIf="!isCollapsed">Courses</span>
+            <span *ngIf="!isCollapsed">Cursos</span>
           </a>
           <a [routerLink]="'/asesorias'" routerLinkActive="active" class="menu-item">
             <i class="fas fa-chalkboard"></i>
-            <span *ngIf="!isCollapsed">Advisories</span>
+            <span *ngIf="!isCollapsed">Asesorías</span>
           </a>
           <a [routerLink]="'/nota'" routerLinkActive="active" class="menu-item">
             <i class="fas fa-star"></i>
-            <span *ngIf="!isCollapsed">Grades</span>
+            <span *ngIf="!isCollapsed">Calificaciones</span>
           </a>
 
-          <div class="section-title" *ngIf="!isCollapsed">ADMINISTRATIVE</div>
+          <div class="section-title" *ngIf="!isCollapsed">ADMINISTRATIVO</div>
           <a [routerLink]="'/facultad'" routerLinkActive="active" class="menu-item">
             <i class="fas fa-building-columns"></i>
-            <span *ngIf="!isCollapsed">Faculties</span>
+            <span *ngIf="!isCollapsed">Facultades</span>
           </a>
           <a [routerLink]="'/pensums'" routerLinkActive="active" class="menu-item">
             <i class="fas fa-scroll"></i>
-            <span *ngIf="!isCollapsed">Pensums</span>
+            <span *ngIf="!isCollapsed">Planes de Estudio</span>
           </a>
           <a [routerLink]="'/aula'" routerLinkActive="active" class="menu-item">
             <i class="fas fa-door-open"></i>
-            <span *ngIf="!isCollapsed">Classrooms</span>
+            <span *ngIf="!isCollapsed">Aulas</span>
           </a>
           <a [routerLink]="'/horario'" routerLinkActive="active" class="menu-item">
             <i class="fas fa-calendar"></i>
-            <span *ngIf="!isCollapsed">Schedules</span>
+            <span *ngIf="!isCollapsed">Horarios</span>
           </a>
 
-          <div class="section-title" *ngIf="!isCollapsed">SETTINGS</div>
+          <div class="section-title" *ngIf="!isCollapsed">CONFIGURACIÓN</div>
           <a [routerLink]="'/tipo-genero'" routerLinkActive="active" class="menu-item">
             <i class="fas fa-venus-mars"></i>
-            <span *ngIf="!isCollapsed">Gender Types</span>
+            <span *ngIf="!isCollapsed">Tipos de Género</span>
           </a>
           <a [routerLink]="'/tipo-documento'" routerLinkActive="active" class="menu-item">
             <i class="fas fa-id-card"></i>
-            <span *ngIf="!isCollapsed">Document Types</span>
+            <span *ngIf="!isCollapsed">Tipos de Documento</span>
           </a>
         </div>
 
         <div class="user-profile" *ngIf="!isCollapsed">
-          <img src="https://ui-avatars.com/api/?name=Admin&background=1a237e&color=fff" alt="User" class="avatar">
+          <img src="https://ui-avatars.com/api/?name=Admin&background=1a237e&color=fff" alt="Usuario" class="avatar">
           <div class="user-info">
-            <h3>Admin User</h3>
-            <span class="role">Administrator</span>
+            <h3>Usuario Admin</h3>
+            <span class="role">Administrador</span>
           </div>
         </div>
       </aside>

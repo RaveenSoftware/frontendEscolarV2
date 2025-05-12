@@ -13,7 +13,7 @@ import { AuthService } from './services/auth.service';
   template: `
     <ng-container *ngIf="!isLoginRoute; else loginOnly">
       <div class="app-container">
-        <app-sidebar (sidebarCollapsed)="onSidebarCollapse($event)"></app-sidebar>
+        <app-sidebar (sidebarCollapsed)="onSidebarCollapse($event === true)"></app-sidebar>
         <div class="main-content" [class.collapsed]="isSidebarCollapsed">
           <app-header></app-header>
           <router-outlet></router-outlet>

@@ -9,14 +9,14 @@ import { Router } from '@angular/router';
   template: `
     <div class="dashboard-container">
       <div class="welcome-section">
-        <h1>👋 Welcome, Admin!</h1>
-        <p class="subtitle">Get started with managing your educational platform</p>
+        <h1>👋 ¡Bienvenido, Administrador!</h1>
+        <p class="subtitle">Comienza a gestionar tu plataforma educativa</p>
         
         <div class="quick-actions">
           <div class="action-card">
-            <h3>Quick Start Guide</h3>
-            <p>Learn how to manage your educational platform effectively</p>
-            <button class="action-button">Learn More →</button>
+            <h3>Guía de Inicio Rápido</h3>
+            <p>Aprende a gestionar tu plataforma educativa de manera efectiva</p>
+            <button class="action-button">Aprende Más →</button>
           </div>
         </div>
       </div>
@@ -24,8 +24,8 @@ import { Router } from '@angular/router';
       <div class="main-content">
         <div class="section">
           <div class="section-header">
-            <h2>Academic Management</h2>
-            <button class="view-all">View all</button>
+            <h2>Gestión Académica</h2>
+            <button class="view-all">Ver todo</button>
           </div>
           <div class="cards-grid">
             <div class="dashboard-card" (click)="navigate('/students')">
@@ -33,8 +33,8 @@ import { Router } from '@angular/router';
                 <i class="fas fa-user-graduate"></i>
               </div>
               <div class="card-content">
-                <h3>Students</h3>
-                <p>298 Active Students</p>
+                <h3>Estudiantes</h3>
+                <p>298 Estudiantes Activos</p>
               </div>
             </div>
             
@@ -43,8 +43,8 @@ import { Router } from '@angular/router';
                 <i class="fas fa-chalkboard-teacher"></i>
               </div>
               <div class="card-content">
-                <h3>Teachers</h3>
-                <p>43 Faculty Members</p>
+                <h3>Docentes</h3>
+                <p>43 Miembros de Facultad</p>
               </div>
             </div>
 
@@ -53,8 +53,8 @@ import { Router } from '@angular/router';
                 <i class="fas fa-book"></i>
               </div>
               <div class="card-content">
-                <h3>Courses</h3>
-                <p>56 Active Courses</p>
+                <h3>Cursos</h3>
+                <p>56 Cursos Activos</p>
               </div>
             </div>
 
@@ -63,8 +63,8 @@ import { Router } from '@angular/router';
                 <i class="fas fa-chalkboard"></i>
               </div>
               <div class="card-content">
-                <h3>Advisories</h3>
-                <p>24 Scheduled Sessions</p>
+                <h3>Asesorías</h3>
+                <p>24 Sesiones Programadas</p>
               </div>
             </div>
           </div>
@@ -72,8 +72,8 @@ import { Router } from '@angular/router';
 
         <div class="section">
           <div class="section-header">
-            <h2>Administrative</h2>
-            <button class="view-all">View all</button>
+            <h2>Administrativo</h2>
+            <button class="view-all">Ver todo</button>
           </div>
           <div class="cards-grid">
             <div class="dashboard-card" (click)="navigate('/facultad')">
@@ -81,8 +81,8 @@ import { Router } from '@angular/router';
                 <i class="fas fa-building-columns"></i>
               </div>
               <div class="card-content">
-                <h3>Faculties</h3>
-                <p>6 Active Faculties</p>
+                <h3>Facultades</h3>
+                <p>6 Facultades Activas</p>
               </div>
             </div>
 
@@ -91,8 +91,8 @@ import { Router } from '@angular/router';
                 <i class="fas fa-scroll"></i>
               </div>
               <div class="card-content">
-                <h3>Pensums</h3>
-                <p>12 Active Programs</p>
+                <h3>Planes de Estudio</h3>
+                <p>12 Programas Activos</p>
               </div>
             </div>
 
@@ -101,8 +101,8 @@ import { Router } from '@angular/router';
                 <i class="fas fa-door-open"></i>
               </div>
               <div class="card-content">
-                <h3>Classrooms</h3>
-                <p>32 Available Rooms</p>
+                <h3>Aulas</h3>
+                <p>32 Salones Disponibles</p>
               </div>
             </div>
 
@@ -111,8 +111,8 @@ import { Router } from '@angular/router';
                 <i class="fas fa-calendar"></i>
               </div>
               <div class="card-content">
-                <h3>Schedules</h3>
-                <p>Current Term</p>
+                <h3>Horarios</h3>
+                <p>Periodo Actual</p>
               </div>
             </div>
           </div>
