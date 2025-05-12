@@ -125,6 +125,16 @@ import { Router } from '@angular/router';
                 <p>3 Roles Configurados</p>
               </div>
             </div>
+
+            <div class="dashboard-card" (click)="navigate('/programas')">
+              <div class="card-icon program-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="card-content">
+                <h3>Programas Académicos</h3>
+                <p>8 Programas Activos</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -252,6 +262,7 @@ import { Router } from '@angular/router';
     .classroom-icon { background: linear-gradient(135deg, #3F51B5 0%, #283593 100%); }
     .schedule-icon { background: linear-gradient(135deg, #009688 0%, #00796B 100%); }
     .role-icon { background: linear-gradient(135deg, #795548 0%, #4E342E 100%); }
+    .program-icon { background: linear-gradient(135deg, #FF5722 0%, #F4511E 100%); }
 
     .card-content {
       flex: 1;
