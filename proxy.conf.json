@@ -1,9 +1,16 @@
 {
-    "/api": {
-      "target": "http://localhost:8080",
-      "secure": false,
-      "changeOrigin": true,
-      "logLevel": "debug"
+  "/api": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "timeout": 30000,
+    "proxyTimeout": 30000,
+    "pathRewrite": {
+      "^/api": "/api"
+    },
+    "headers": {
+      "Connection": "keep-alive"
     }
   }
-  
+}
