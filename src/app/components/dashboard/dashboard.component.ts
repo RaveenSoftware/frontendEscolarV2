@@ -115,6 +115,16 @@ import { Router } from '@angular/router';
                 <p>Periodo Actual</p>
               </div>
             </div>
+
+            <div class="dashboard-card" (click)="navigate('/roles')">
+              <div class="card-icon role-icon">
+                <i class="fas fa-user-shield"></i>
+              </div>
+              <div class="card-content">
+                <h3>Gestionar Roles</h3>
+                <p>3 Roles Configurados</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -241,6 +251,7 @@ import { Router } from '@angular/router';
     .pensum-icon { background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%); }
     .classroom-icon { background: linear-gradient(135deg, #3F51B5 0%, #283593 100%); }
     .schedule-icon { background: linear-gradient(135deg, #009688 0%, #00796B 100%); }
+    .role-icon { background: linear-gradient(135deg, #795548 0%, #4E342E 100%); }
 
     .card-content {
       flex: 1;
