@@ -13,8 +13,8 @@ import { AuthService } from './services/auth.service';
   template: `
     <ng-container *ngIf="!isLoginRoute; else loginOnly">
       <div class="app-container">
-        <app-sidebar></app-sidebar>
-        <div class="main-content">
+        <app-sidebar (sidebarCollapsed)="onSidebarCollapse($event)"></app-sidebar>
+        <div class="main-content" [class.collapsed]="isSidebarCollapsed">
           <app-header></app-header>
           <router-outlet></router-outlet>
         </div>
@@ -35,11 +35,19 @@ import { AuthService } from './services/auth.service';
       margin-left: 280px;
       background: #f8f9fa;
       transition: margin-left 0.3s ease;
+      
+      &.collapsed {
+        margin-left: 80px;
+      }
     }
 
     @media (max-width: 768px) {
       .main-content {
         margin-left: 0;
+        
+        &.collapsed {
+          margin-left: 0;
+        }
       }
     }
   `],
@@ -47,6 +55,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent implements OnInit {
   isAuthenticated = false;
   isLoginRoute = false;
+  isSidebarCollapsed = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -58,5 +67,9 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe(() => {
       this.isLoginRoute = this.router.url === '/login';
     });
+  }
+
+  onSidebarCollapse(collapsed: boolean) {
+    this.isSidebarCollapsed = collapsed;
   }
 }
