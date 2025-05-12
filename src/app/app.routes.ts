@@ -19,6 +19,7 @@ import { AulaHorarioManagementComponent } from './components/aula-horario/aula-h
 import { NotaManagementComponent } from './components/nota/nota.component';
 import { PoligrafoManagementComponent } from './components/poligrafo/poligrafo.component';
 import { RolManagementComponent } from './components/rol/rol-management.component';
+import { ProgramaAcademicoComponent } from './components/programa-academico/programa-academico.component';
 
 export const routes: Routes = [
   // Solo el componente de login se carga para esta ruta
@@ -44,6 +45,7 @@ export const routes: Routes = [
   { path: 'nota' , component: NotaManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
   { path: 'poligrafo' , component: PoligrafoManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
   { path: 'roles' , component: RolManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
+  { path: 'programas' , component: ProgramaAcademicoComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
 
   // Ruta por defecto redirige al login
   { path: '', redirectTo: 'login', pathMatch: 'full' },
