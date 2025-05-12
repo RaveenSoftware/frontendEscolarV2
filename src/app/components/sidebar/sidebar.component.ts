@@ -2,110 +2,168 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-interface MenuItem {
-  path: string;
-  icon: string;
-  label: string;
-  section?: string;
-}
-
 @Component({
   selector: 'app-sidebar',
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <aside class="sidebar">
-      <div class="logo">
-        <img src="assets/logoudes.png" alt="Logo" class="logo-img">
-        <span class="logo-text">GEMINIS</span>
-      </div>
-
-      <div class="menu-section">
-        <a [routerLink]="'/admin-dashboard'" routerLinkActive="active" class="menu-item">
-          <i class="fas fa-home"></i>
-          <span>Dashboard</span>
-        </a>
-
-        <div class="section-title">ACADEMIC</div>
-        <a [routerLink]="'/students'" routerLinkActive="active" class="menu-item">
-          <i class="fas fa-user-graduate"></i>
-          <span>Students</span>
-        </a>
-        <a [routerLink]="'/teacher'" routerLinkActive="active" class="menu-item">
-          <i class="fas fa-chalkboard-teacher"></i>
-          <span>Teachers</span>
-        </a>
-        <a [routerLink]="'/cursos'" routerLinkActive="active" class="menu-item">
-          <i class="fas fa-book"></i>
-          <span>Courses</span>
-        </a>
-        <a [routerLink]="'/asesorias'" routerLinkActive="active" class="menu-item">
-          <i class="fas fa-chalkboard"></i>
-          <span>Advisories</span>
-        </a>
-        <a [routerLink]="'/nota'" routerLinkActive="active" class="menu-item">
-          <i class="fas fa-star"></i>
-          <span>Grades</span>
-        </a>
-
-        <div class="section-title">ADMINISTRATIVE</div>
-        <a [routerLink]="'/facultad'" routerLinkActive="active" class="menu-item">
-          <i class="fas fa-building-columns"></i>
-          <span>Faculties</span>
-        </a>
-        <a [routerLink]="'/pensums'" routerLinkActive="active" class="menu-item">
-          <i class="fas fa-scroll"></i>
-          <span>Pensums</span>
-        </a>
-        <a [routerLink]="'/aula'" routerLinkActive="active" class="menu-item">
-          <i class="fas fa-door-open"></i>
-          <span>Classrooms</span>
-        </a>
-        <a [routerLink]="'/horario'" routerLinkActive="active" class="menu-item">
-          <i class="fas fa-calendar"></i>
-          <span>Schedules</span>
-        </a>
-
-        <div class="section-title">SETTINGS</div>
-        <a [routerLink]="'/tipo-genero'" routerLinkActive="active" class="menu-item">
-          <i class="fas fa-venus-mars"></i>
-          <span>Gender Types</span>
-        </a>
-        <a [routerLink]="'/tipo-documento'" routerLinkActive="active" class="menu-item">
-          <i class="fas fa-id-card"></i>
-          <span>Document Types</span>
-        </a>
-      </div>
-
-      <div class="user-profile">
-        <img src="https://ui-avatars.com/api/?name=Admin&background=1a237e&color=fff" alt="User" class="avatar">
-        <div class="user-info">
-          <h3>Admin User</h3>
-          <span class="role">Administrator</span>
+    <div class="sidebar-container" [class.collapsed]="isCollapsed">
+      <aside class="sidebar" [class.collapsed]="isCollapsed">
+        <div class="sidebar-header">
+          <div class="logo">
+            <img src="assets/logoudes.png" alt="Logo" class="logo-img">
+            <span class="logo-text" *ngIf="!isCollapsed">GEMINIS</span>
+          </div>
+          <button class="collapse-btn" (click)="toggleSidebar()">
+            <i class="fas" [class.fa-chevron-left]="!isCollapsed" [class.fa-chevron-right]="isCollapsed"></i>
+          </button>
         </div>
-      </div>
-    </aside>
+
+        <div class="menu-section">
+          <a [routerLink]="'/admin-dashboard'" routerLinkActive="active" class="menu-item">
+            <i class="fas fa-home"></i>
+            <span *ngIf="!isCollapsed">Dashboard</span>
+          </a>
+
+          <div class="section-title" *ngIf="!isCollapsed">ACADEMIC</div>
+          <a [routerLink]="'/students'" routerLinkActive="active" class="menu-item">
+            <i class="fas fa-user-graduate"></i>
+            <span *ngIf="!isCollapsed">Students</span>
+          </a>
+          <a [routerLink]="'/teacher'" routerLinkActive="active" class="menu-item">
+            <i class="fas fa-chalkboard-teacher"></i>
+            <span *ngIf="!isCollapsed">Teachers</span>
+          </a>
+          <a [routerLink]="'/cursos'" routerLinkActive="active" class="menu-item">
+            <i class="fas fa-book"></i>
+            <span *ngIf="!isCollapsed">Courses</span>
+          </a>
+          <a [routerLink]="'/asesorias'" routerLinkActive="active" class="menu-item">
+            <i class="fas fa-chalkboard"></i>
+            <span *ngIf="!isCollapsed">Advisories</span>
+          </a>
+          <a [routerLink]="'/nota'" routerLinkActive="active" class="menu-item">
+            <i class="fas fa-star"></i>
+            <span *ngIf="!isCollapsed">Grades</span>
+          </a>
+
+          <div class="section-title" *ngIf="!isCollapsed">ADMINISTRATIVE</div>
+          <a [routerLink]="'/facultad'" routerLinkActive="active" class="menu-item">
+            <i class="fas fa-building-columns"></i>
+            <span *ngIf="!isCollapsed">Faculties</span>
+          </a>
+          <a [routerLink]="'/pensums'" routerLinkActive="active" class="menu-item">
+            <i class="fas fa-scroll"></i>
+            <span *ngIf="!isCollapsed">Pensums</span>
+          </a>
+          <a [routerLink]="'/aula'" routerLinkActive="active" class="menu-item">
+            <i class="fas fa-door-open"></i>
+            <span *ngIf="!isCollapsed">Classrooms</span>
+          </a>
+          <a [routerLink]="'/horario'" routerLinkActive="active" class="menu-item">
+            <i class="fas fa-calendar"></i>
+            <span *ngIf="!isCollapsed">Schedules</span>
+          </a>
+
+          <div class="section-title" *ngIf="!isCollapsed">SETTINGS</div>
+          <a [routerLink]="'/tipo-genero'" routerLinkActive="active" class="menu-item">
+            <i class="fas fa-venus-mars"></i>
+            <span *ngIf="!isCollapsed">Gender Types</span>
+          </a>
+          <a [routerLink]="'/tipo-documento'" routerLinkActive="active" class="menu-item">
+            <i class="fas fa-id-card"></i>
+            <span *ngIf="!isCollapsed">Document Types</span>
+          </a>
+        </div>
+
+        <div class="user-profile" *ngIf="!isCollapsed">
+          <img src="https://ui-avatars.com/api/?name=Admin&background=1a237e&color=fff" alt="User" class="avatar">
+          <div class="user-info">
+            <h3>Admin User</h3>
+            <span class="role">Administrator</span>
+          </div>
+        </div>
+      </aside>
+    </div>
   `,
   styles: [`
-    .sidebar {
-      width: 280px;
+    .sidebar-container {
+      position: fixed;
+      top: 0;
+      left: 0;
       height: 100vh;
-      background: white;
-      border-right: 1px solid #e0e0e0;
+      z-index: 1000;
+      transition: width 0.3s ease;
+      width: 280px;
+      
+      &.collapsed {
+        width: 80px;
+      }
+    }
+
+    .sidebar {
+      width: 100%;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-right: 1px solid rgba(224, 224, 224, 0.5);
       display: flex;
       flex-direction: column;
-      padding: 1.5rem;
-      position: fixed;
+      padding: 1.5rem 1rem;
+      position: relative;
       overflow-y: auto;
+      transition: all 0.3s ease;
+
+      &.collapsed {
+        .logo-img {
+          margin: 0 auto;
+        }
+        
+        .menu-item {
+          justify-content: center;
+          
+          i {
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(224, 224, 224, 0.5);
+      margin-bottom: 1.5rem;
+    }
+
+    .collapse-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #e2e8f0;
+      }
+
+      i {
+        font-size: 0.75rem;
+        color: #64748b;
+      }
     }
 
     .logo {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid #e0e0e0;
-      margin-bottom: 1.5rem;
     }
 
     .logo-img {
@@ -143,23 +201,23 @@ interface MenuItem {
       text-decoration: none;
       border-radius: 0.5rem;
       transition: all 0.2s ease;
-    }
 
-    .menu-item i {
-      font-size: 1.25rem;
-      width: 1.5rem;
-      text-align: center;
-    }
+      i {
+        font-size: 1.25rem;
+        width: 1.5rem;
+        text-align: center;
+      }
 
-    .menu-item:hover {
-      background: #f1f5f9;
-      color: #1a237e;
-    }
+      &:hover {
+        background: rgba(241, 245, 249, 0.8);
+        color: #1a237e;
+      }
 
-    .menu-item.active {
-      background: #e8eaf6;
-      color: #1a237e;
-      font-weight: 500;
+      &.active {
+        background: rgba(232, 234, 246, 0.8);
+        color: #1a237e;
+        font-weight: 500;
+      }
     }
 
     .user-profile {
@@ -168,7 +226,7 @@ interface MenuItem {
       gap: 1rem;
       padding: 1rem;
       margin-top: 2rem;
-      border-top: 1px solid #e0e0e0;
+      border-top: 1px solid rgba(224, 224, 224, 0.5);
     }
 
     .avatar {
@@ -179,29 +237,35 @@ interface MenuItem {
 
     .user-info {
       flex: 1;
-    }
 
-    .user-info h3 {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #1e293b;
-      margin: 0;
-    }
+      h3 {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin: 0;
+      }
 
-    .role {
-      font-size: 0.75rem;
-      color: #64748b;
+      .role {
+        font-size: 0.75rem;
+        color: #64748b;
+      }
     }
 
     @media (max-width: 768px) {
-      .sidebar {
+      .sidebar-container {
         width: 0;
-        padding: 0;
-        overflow: hidden;
+        
+        &.collapsed {
+          width: 0;
+        }
       }
     }
   `]
 })
 export class SidebarComponent {
-  constructor() {}
+  isCollapsed = false;
+
+  toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
+  }
 }

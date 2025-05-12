@@ -11,7 +11,6 @@ import { AuthService } from './services/auth.service';
   standalone: true,
   imports: [CommonModule, RouterOutlet, SidebarComponent, HeaderComponent],
   template: `
-    <!-- Muestra los componentes según la autenticación y la ruta -->
     <ng-container *ngIf="!isLoginRoute; else loginOnly">
       <div class="app-container">
         <app-sidebar></app-sidebar>
@@ -22,23 +21,28 @@ import { AuthService } from './services/auth.service';
       </div>
     </ng-container>
 
-    <!-- Solo el login se muestra cuando está en /login -->
     <ng-template #loginOnly>
       <router-outlet></router-outlet>
     </ng-template>
   `,
-  styles: [
-    `
-      .app-container {
-        display: flex;
-        min-height: 100vh;
-      }
+  styles: [`
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      background: #f8f9fa;
+      transition: margin-left 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
       .main-content {
-        flex: 1;
-        background: #f5f5f5;
+        margin-left: 0;
       }
-    `,
-  ],
+    }
+  `],
 })
 export class AppComponent implements OnInit {
   isAuthenticated = false;
@@ -47,12 +51,10 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    // Suscríbete al estado de autenticación
     this.authService.getAuthStatus().subscribe((status) => {
       this.isAuthenticated = status;
     });
 
-    // Verifica si la ruta actual es '/login'
     this.router.events.subscribe(() => {
       this.isLoginRoute = this.router.url === '/login';
     });
