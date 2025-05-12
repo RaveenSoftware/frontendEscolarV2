@@ -1,96 +1,96 @@
-  import { Component } from '@angular/core';
-  import { CommonModule } from '@angular/common';
-  import { FormsModule } from '@angular/forms';
-  import { Router } from '@angular/router';
-  import { AuthService } from 'src/app/services/auth.service';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
-  @Component({
-    selector: 'app-login',
-    standalone: true,
-    imports: [CommonModule, FormsModule],
-    template: `
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  template: `
     <div class="container">
-  <div class="login-section">
-    <div class="form-container">
-      <h1 class="animate-slideDown">Bienvenido!</h1>
-      <p class="subtitle animate-slideDown animation-delay-200">
-        Portal Universitario para Usuarios
-      </p>
-      <form class="animate-slideUp animation-delay-400" (ngSubmit)="login()">
-        <div class="input-container">
-          <input
-            type="text"
-            placeholder="Número de Documento"
-            [(ngModel)]="numeroDocumento"
-            name="numeroDocumento"
-            class="input-focus-effect"
-            required
-          />
+      <div class="login-section">
+        <div class="form-container">
+          <h1 class="animate-slideDown">Bienvenido!</h1>
+          <p class="subtitle animate-slideDown animation-delay-200">
+            Portal Universitario para Usuarios
+          </p>
+          <form class="animate-slideUp animation-delay-400" (ngSubmit)="login()">
+            <div class="input-container">
+              <input
+                type="text"
+                placeholder="Número de Documento"
+                [(ngModel)]="numeroDocumento"
+                name="numeroDocumento"
+                class="input-focus-effect"
+                required
+              />
+            </div>
+            <div class="input-container">
+              <input
+                [type]="isPasswordVisible ? 'text' : 'password'"
+                placeholder="Contraseña"
+                [(ngModel)]="password"
+                name="password"
+                id="password"
+                class="input-focus-effect"
+                required
+              />
+              <button
+                type="button"
+                id="togglePassword"
+                class="password-toggle"
+                [class.show]="isPasswordVisible"
+                (click)="togglePassword()"
+              ></button>
+            </div>
+            <div class="checkbox-container">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="keep-session" />
+                <span class="checkmark"></span>
+                <span class="checkbox-text">Mantener sesión iniciada</span>
+              </label>
+              <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+            </div>
+            <button type="submit" class="login-button button-hover-effect animate-pulse">
+              Iniciar
+            </button>
+          </form>
+          <p class="error-message" *ngIf="message">{{ message }}</p>
         </div>
-        <div class="input-container">
-          <input
-            [type]="isPasswordVisible ? 'text' : 'password'"
-            placeholder="Contraseña"
-            [(ngModel)]="password"
-            name="password"
-            id="password"
-            class="input-focus-effect"
-            required
-          />
-          <button
-            type="button"
-            id="togglePassword"
-            class="password-toggle"
-            [class.show]="isPasswordVisible"
-            (click)="togglePassword()"
-          ></button>
+        <div class="footer">
+          <div class="social-icons">
+            <a href="https://www.facebook.com/UdesCucutaOficial" class="social-icon-hover">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/600px-Facebook_Logo_%282019%29.png"
+                alt="Facebook"
+              />
+            </a>
+            <a href="https://www.instagram.com/udescampuscucuta/" class="social-icon-hover">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/132px-Instagram_logo_2016.svg.png"
+                alt="Instagram"
+              />
+            </a>
+          </div>
+          <p>Universidad de Santander UDES, Vigilada Mineducación</p>
+          <p>
+            Resolución otorgada por el Ministerio de Educación Nacional No. 6216 del 22 de diciembre de 2005 / Personería
+            jurídica 810 de 19/12/96
+          </p>
+          <p>
+            Institución de Educación Superior sujeta a inspección y vigilancia por el Ministerio de Educación Nacional
+            Resolución 12220 de 2016
+          </p>
         </div>
-        <div class="checkbox-container">
-          <label class="custom-checkbox">
-            <input type="checkbox" id="keep-session" />
-            <span class="checkmark"></span>
-            <span class="checkbox-text">Mantener sesión iniciada</span>
-          </label>
-          <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
-        </div>
-        <button type="submit" class="login-button button-hover-effect animate-pulse">
-          Iniciar
-        </button>
-      </form>
-      <p class="error-message" *ngIf="message">{{ message }}</p>
-    </div>
-    <div class="footer">
-      <div class="social-icons">
-        <a href="https://www.facebook.com/UdesCucutaOficial" class="social-icon-hover">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/600px-Facebook_Logo_%282019%29.png"
-            alt="Facebook"
-          />
-        </a>
-        <a href="https://www.instagram.com/udescampuscucuta/" class="social-icon-hover">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/132px-Instagram_logo_2016.svg.png"
-            alt="Instagram"
-          />
-        </a>
       </div>
-      <p>Universidad de Santander UDES, Vigilada Mineducación</p>
-      <p>
-        Resolución otorgada por el Ministerio de Educación Nacional No. 6216 del 22 de diciembre de 2005 / Personería
-        jurídica 810 de 19/12/96
-      </p>
-      <p>
-        Institución de Educación Superior sujeta a inspección y vigilancia por el Ministerio de Educación Nacional
-        Resolución 12220 de 2016
-      </p>
+      <div class="image-section" style="background-image: url('assets/fondo.png');">
+        <img src="assets/logoudes.png" alt="University Logo" class="logo hover-scale" />
+      </div>
     </div>
-  </div>
-  <div class="image-section" style="background-image: url('assets/fondo.png');">
-    <img src="assets/logoudes.png" alt="University Logo" class="logo hover-scale" />
-  </div>
-</div>
-`,
-    styles: [`@keyframes fadeIn {
+  `,
+  styles: [`@keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
   }
@@ -116,14 +116,14 @@
       padding: 0;
       height: 100%;
       font-family: Arial, sans-serif;
-      overflow-x: hidden; /* Evitar desbordamiento horizontal */
+      overflow-x: hidden;
   }
   
   .container {
       display: flex;
-      width: 100%; /* Asegúrate de que ocupe todo el ancho */
-      height: 100vh; /* Ocupa todo el alto de la pantalla */
-      min-height: 100vh; /* Asegura que se ajuste al alto de la pantalla */
+      width: 100%;
+      height: 100vh;
+      min-height: 100vh;
   }
   
   .login-section {
@@ -144,7 +144,7 @@
       background-size: cover;
       background-position: center;
       position: relative;
-      height: 100%; /* Ocupa todo el alto */
+      height: 100%;
   }
   
   h1 {
@@ -373,7 +373,6 @@
       transform: scale(1.05);
   }
   
-  /* Media query para pantallas más pequeñas */
   @media (max-width: 768px) {
       .container {
           flex-direction: column;
@@ -389,47 +388,24 @@
       }
   }
   `]
-  })
-  export class LoginComponent {
-    numeroDocumento: string = '12345';
-    password: string = '12345';
-    message: string = '';
-  
-    constructor(private authService: AuthService, private router: Router) {}
-  
-    login() {
-      this.authService.login(this.numeroDocumento, this.password).subscribe(
-        response => {
-          if (response.message === 'Login successful') {
-            localStorage.setItem('authToken', 'true'); // Guarda el token
-            localStorage.setItem('userType', response.userType); // Guarda el tipo de usuario
-    
-            // Actualiza el estado de autenticación en AuthService
-            this.authService.updateAuthStatus(true);
-    
-            // Redirige al dashboard adecuado según el tipo de usuario
-            if (response.userType === 'admin') {
-              this.router.navigate(['/admin-dashboard']);
-            } else if (response.userType === 'student') {
-              this.router.navigate(['/student-dashboard']);
-            } else if (response.userType === 'teacher') {
-              this.router.navigate(['/teacher-dashboard']);
-            }
-          } else {
-            this.message = 'Credenciales ERRONEAS';
-          }
-        },
-        error => {
-          console.error('Error:', error);
-          this.message = 'Error en el servidor o credenciales incorrectas.';
-        }
-      );
-    }
+})
+export class LoginComponent {
+  numeroDocumento: string = '';
+  password: string = '';
+  message: string = '';
+  isPasswordVisible: boolean = false;
 
-    isPasswordVisible: boolean = false;
+  constructor(private authService: AuthService, private router: Router) {}
+
+  login() {
+    // Bypass authentication and directly navigate to admin dashboard
+    localStorage.setItem('authToken', 'true');
+    localStorage.setItem('userType', 'admin');
+    this.authService.updateAuthStatus(true);
+    this.router.navigate(['/admin-dashboard']);
+  }
 
   togglePassword(): void {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
-    
-  }
+}
