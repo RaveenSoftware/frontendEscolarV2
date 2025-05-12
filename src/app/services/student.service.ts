@@ -29,7 +29,12 @@ export class StudentService {
   }
 
   list(): Observable<Student[]> {
-    return this.http.get<Student[]>(this.apiUrl)
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+
+    return this.http.get<Student[]>(this.apiUrl, { headers })
       .pipe(
         retry(2),
         catchError(this.handleError)
