@@ -12,17 +12,12 @@ import { AuthService } from 'src/app/services/auth.service';
     <div class="container">
       <div class="login-section">
         <div class="form-container">
-          <div class="university-header">
-            <img src="https://images.pexels.com/photos/207692/pexels-photo-207692.jpeg" alt="University Campus" class="campus-image" />
-            <div class="overlay"></div>
-            <h1 class="animate-slideDown">Sistema Académico</h1>
-            <p class="subtitle animate-slideDown animation-delay-200">
-              Universidad de Excelencia
-            </p>
-          </div>
+          <h1 class="animate-slideDown">Bienvenido!</h1>
+          <p class="subtitle animate-slideDown animation-delay-200">
+            Portal Universitario para Usuarios
+          </p>
           <form class="animate-slideUp animation-delay-400" (ngSubmit)="login()">
             <div class="input-container">
-              <i class="fas fa-user"></i>
               <input
                 type="text"
                 placeholder="Número de Documento"
@@ -33,7 +28,6 @@ import { AuthService } from 'src/app/services/auth.service';
               />
             </div>
             <div class="input-container">
-              <i class="fas fa-lock"></i>
               <input
                 [type]="isPasswordVisible ? 'text' : 'password'"
                 placeholder="Contraseña"
@@ -45,12 +39,11 @@ import { AuthService } from 'src/app/services/auth.service';
               />
               <button
                 type="button"
+                id="togglePassword"
                 class="password-toggle"
                 [class.show]="isPasswordVisible"
                 (click)="togglePassword()"
-              >
-                <i [class]="isPasswordVisible ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
-              </button>
+              ></button>
             </div>
             <div class="checkbox-container">
               <label class="custom-checkbox">
@@ -61,368 +54,339 @@ import { AuthService } from 'src/app/services/auth.service';
               <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
             </div>
             <button type="submit" class="login-button button-hover-effect animate-pulse">
-              <i class="fas fa-sign-in-alt"></i> Ingresar al Sistema
+              Iniciar
             </button>
           </form>
           <p class="error-message" *ngIf="message">{{ message }}</p>
         </div>
         <div class="footer">
           <div class="social-icons">
-            <a href="#" class="social-icon-hover">
-              <i class="fab fa-facebook"></i>
+            <a href="https://www.facebook.com/UdesCucutaOficial" class="social-icon-hover">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/600px-Facebook_Logo_%282019%29.png"
+                alt="Facebook"
+              />
             </a>
-            <a href="#" class="social-icon-hover">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-icon-hover">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#" class="social-icon-hover">
-              <i class="fab fa-linkedin"></i>
+            <a href="https://www.instagram.com/udescampuscucuta/" class="social-icon-hover">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/132px-Instagram_logo_2016.svg.png"
+                alt="Instagram"
+              />
             </a>
           </div>
-          <div class="footer-info">
-            <p>© 2025 Universidad de Excelencia</p>
-            <p>Institución de Educación Superior</p>
-            <p>Vigilada por el Ministerio de Educación Nacional</p>
-          </div>
+          <p>Universidad de Santander UDES, Vigilada Mineducación</p>
+          <p>
+            Resolución otorgada por el Ministerio de Educación Nacional No. 6216 del 22 de diciembre de 2005 / Personería
+            jurídica 810 de 19/12/96
+          </p>
+          <p>
+            Institución de Educación Superior sujeta a inspección y vigilancia por el Ministerio de Educación Nacional
+            Resolución 12220 de 2016
+          </p>
         </div>
       </div>
-      <div class="info-section">
-        <div class="info-content">
-          <h2>Bienvenido al Sistema Académico</h2>
-          <div class="feature-grid">
-            <div class="feature-item">
-              <i class="fas fa-graduation-cap"></i>
-              <h3>Gestión Académica</h3>
-              <p>Accede a tus calificaciones y horarios</p>
-            </div>
-            <div class="feature-item">
-              <i class="fas fa-book-reader"></i>
-              <h3>Recursos Educativos</h3>
-              <p>Biblioteca digital y material de estudio</p>
-            </div>
-            <div class="feature-item">
-              <i class="fas fa-calendar-alt"></i>
-              <h3>Calendario Académico</h3>
-              <p>Mantente al día con las actividades</p>
-            </div>
-            <div class="feature-item">
-              <i class="fas fa-users"></i>
-              <h3>Comunidad Universitaria</h3>
-              <p>Conecta con estudiantes y docentes</p>
-            </div>
-          </div>
-        </div>
+      <div class="image-section" style="background-image: url('assets/fondo.png');">
+        <img src="assets/logoudes.png" alt="University Logo" class="logo hover-scale" />
       </div>
     </div>
   `,
-  styles: [`
-    @keyframes fadeIn {
+  styles: [`@keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
-    }
-    
-    @keyframes slideDown {
+  }
+  
+  @keyframes slideDown {
       from { transform: translateY(-20px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
-    }
-    
-    @keyframes slideUp {
+  }
+  
+  @keyframes slideUp {
       from { transform: translateY(20px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
-    }
-    
-    @keyframes pulse {
+  }
+  
+  @keyframes pulse {
       0% { transform: scale(1); }
-      50% { transform: scale(1.02); }
+      50% { transform: scale(1.05); }
       100% { transform: scale(1); }
-    }
-    
-    body, html {
+  }
+  
+  body, html {
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, sans-serif;
       overflow-x: hidden;
-    }
-    
-    .container {
+  }
+  
+  .container {
       display: flex;
       width: 100%;
       height: 100vh;
-      background: #f5f5f5;
-    }
-    
-    .login-section {
-      width: 40%;
-      background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+      min-height: 100vh;
+  }
+  
+  .login-section {
+      width: 50%;
+      background-color: #0E2B4A;
       color: white;
-      padding: 2rem;
+      padding: 40px;
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      animation: fadeIn 0.8s ease-out;
+  }
+  
+  .image-section {
+      width: 50%;
+      background-image: url('/assets/logo.png');
+      background-size: cover;
+      background-position: center;
       position: relative;
-      overflow-y: auto;
-    }
-    
-    .info-section {
-      width: 60%;
-      background: white;
-      padding: 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .university-header {
-      position: relative;
-      text-align: center;
-      padding: 2rem 0;
-      margin-bottom: 2rem;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    
-    .campus-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
       height: 100%;
-      object-fit: cover;
-      z-index: 1;
-    }
-    
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
+  }
+  
+  h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+  }
+  
+  .subtitle {
+      margin-bottom: 30px;
+  }
+  
+  .form-container {
+      margin-top: 20%;
+  }
+  
+  .animate-slideDown {
+      animation: slideDown 0.6s ease-out;
+  }
+  
+  .animate-slideUp {
+      animation: slideUp 0.6s ease-out;
+  }
+  
+  .animate-pulse {
+      animation: pulse 2s infinite;
+  }
+  
+  .animation-delay-200 {
+      animation-delay: 200ms;
+  }
+  
+  .animation-delay-400 {
+      animation-delay: 400ms;
+  }
+  
+  input {
       width: 100%;
-      height: 100%;
-      background: rgba(26, 35, 126, 0.7);
-      z-index: 2;
-    }
-    
-    .university-header h1,
-    .university-header p {
-      position: relative;
-      z-index: 3;
-    }
-    
-    .form-container {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      border-radius: 10px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-    
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
+      height: 60px;
+      padding: 10px;
+      margin-bottom: 15px;
+      background-color: #2a3c5e;
+      border: none;
       color: white;
-    }
-    
-    .subtitle {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      margin-bottom: 2rem;
-    }
-    
-    .input-container {
+      box-sizing: border-box;
+  }
+  
+  input::placeholder {
+      color: #aaa;
+  }
+  
+  .input-container {
       position: relative;
-      margin-bottom: 1.5rem;
-    }
-    
-    .input-container i {
+  }
+  
+  .password-toggle {
       position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #90caf9;
-    }
-    
-    input {
-      width: 100%;
-      padding: 1rem 1rem 1rem 3rem;
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.05);
-      color: white;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-    
-    input::placeholder {
-      color: rgba(255, 255, 255, 0.6);
-    }
-    
-    input:focus {
-      border-color: #90caf9;
-      box-shadow: 0 0 0 2px rgba(144, 202, 249, 0.2);
-      outline: none;
-    }
-    
-    .password-toggle {
-      position: absolute;
-      right: 1rem;
+      right: 10px;
       top: 50%;
       transform: translateY(-50%);
       background: none;
       border: none;
-      color: #90caf9;
-      cursor: pointer;
-      padding: 0;
-    }
-    
-    .checkbox-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-    
-    .custom-checkbox {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-    }
-    
-    .checkmark {
-      width: 20px;
-      height: 20px;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      border-radius: 4px;
-      margin-right: 0.5rem;
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    
-    .custom-checkbox input:checked ~ .checkmark {
-      background: #90caf9;
-      border-color: #90caf9;
-    }
-    
-    .login-button {
-      width: 100%;
-      padding: 1rem;
-      background: #90caf9;
-      color: #1a237e;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-    
-    .login-button:hover {
-      background: #64b5f6;
-      transform: translateY(-2px);
-    }
-    
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    
-    .feature-item {
-      text-align: center;
-      padding: 2rem;
-      background: #f8f9fa;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-    }
-    
-    .feature-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-    
-    .feature-item i {
-      font-size: 2.5rem;
-      color: #1a237e;
-      margin-bottom: 1rem;
-    }
-    
-    .feature-item h3 {
-      color: #1a237e;
-      margin-bottom: 0.5rem;
-    }
-    
-    .feature-item p {
-      color: #666;
-    }
-    
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1rem;
-    }
-    
-    .social-icons a {
       color: white;
-      font-size: 1.5rem;
-      opacity: 0.7;
+      cursor: pointer;
+  }
+  
+  .password-toggle::before {
+      content: '👁';
+  }
+  
+  .password-toggle.show::before {
+      content: '👁‍🗨';
+  }
+  
+  .checkbox-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+  }
+  
+  .custom-checkbox {
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-left: 35px;
+      cursor: pointer;
+      font-size: 16px;
+      user-select: none;
+      transition: opacity 0.3s ease;
+  }
+  
+  .custom-checkbox input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+  }
+  
+  .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: #2a3c5e;
+      border-radius: 4px;
       transition: all 0.3s ease;
-    }
-    
-    .social-icons a:hover {
-      opacity: 1;
-      transform: translateY(-3px);
-    }
-    
-    .footer-info {
+  }
+  
+  .custom-checkbox:hover input ~ .checkmark {
+      background-color: #3a4c6e;
+  }
+  
+  .custom-checkbox input:checked ~ .checkmark {
+      background-color: #f0a500;
+  }
+  
+  .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 9px;
+      top: 5px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+      transition: all 0.3s ease;
+  }
+  
+  .custom-checkbox input:checked ~ .checkmark:after {
+      display: block;
+  }
+  
+  .checkbox-text {
+      margin-left: 10px;
+      transition: color 0.3s ease;
+  }
+  
+  .custom-checkbox:hover .checkbox-text {
+      color: #f0a500;
+  }
+  
+  .forgot-password {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 0.9em;
+      transition: color 0.3s ease;
+  }
+  
+  .forgot-password:hover {
+      color: #f0a500;
+  }
+  
+  .login-button {
+      background-color: #f0a500;
+      color: white;
+      border: none;
+      padding: 15px;
+      width: 100%;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1em;
+  }
+  
+  .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+  }
+  
+  .social-icons img {
+      width: 24px;
+      height: 24px;
+  }
+  
+  .logo {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 100px;
+  }
+  
+  .footer {
+      font-size: 0.8em;
+      color: #3E556E;
       text-align: center;
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
-    
-    .footer-info p {
-      margin: 0.3rem 0;
-    }
-    
-    @media (max-width: 1024px) {
+  }
+  
+  .input-focus-effect {
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .input-focus-effect:focus {
+      box-shadow: 0 0 0 2px rgba(240, 165, 0, 0.5);
+      transform: translateY(-2px);
+      outline: none;
+  }
+  
+  .button-hover-effect {
+      transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .button-hover-effect:hover {
+      background-color: #ffc107;
+      transform: translateY(-2px);
+  }
+  
+  .social-icon-hover {
+      transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .social-icon-hover:hover {
+      transform: translateY(-3px);
+      opacity: 0.8;
+  }
+  
+  .hover-scale {
+      transition: transform 0.3s ease;
+  }
+  
+  .hover-scale:hover {
+      transform: scale(1.05);
+  }
+  
+  @media (max-width: 768px) {
       .container {
-        flex-direction: column;
+          flex-direction: column;
       }
-      
-      .login-section,
-      .info-section {
-        width: 100%;
+      .login-section, .image-section {
+          width: 100%;
       }
-      
-      .info-section {
-        padding: 2rem;
+      .image-section {
+          height: 200px;
       }
-      
-      .feature-grid {
-        grid-template-columns: 1fr;
+      .form-container {
+          margin-top: 10%;
       }
-    }
-    
-    @media (max-width: 768px) {
-      .login-section {
-        padding: 1rem;
-      }
-      
-      h1 {
-        font-size: 2rem;
-      }
-      
-      .feature-item {
-        padding: 1.5rem;
-      }
-    }
+  }
   `]
 })
 export class LoginComponent {
