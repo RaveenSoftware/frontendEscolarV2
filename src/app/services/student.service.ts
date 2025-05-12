@@ -1,43 +1,67 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 import { Student } from '../models/student.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
-  private students = new BehaviorSubject<Student[]>([
+  private apiUrl = 'api/v1/estudiantes';
+  
+  // Mock data for local development
+  private mockStudents: Student[] = [
     {
       id: 1,
-      name: 'John Doe',
-      email: 'john@example.com',
-      grade: '10th',
-      enrollmentDate: new Date('2023-09-01'),
-      status: 'active'
+      nombre: 'John Doe',
+      telefono: '3001234567',
+      correoPersonal: 'john.doe@email.com',
+      fechaNacimiento: '1995-05-15',
+      numeroDocumento: '1234567890',
+      estado: true,
+      tipoDocumentoId: 1,
+      generoId: 1,
+      rolId: 1,
+      programaId: 1,
+      codigoInstitucional: 'EST001',
+      correoInstitucional: 'john.doe@udes.edu.co'
     }
-  ]);
+  ];
 
-  getStudents(): Observable<Student[]> {
-    return this.students.asObservable();
+  constructor(private http: HttpClient) {}
+
+  list(): Observable<Student[]> {
+    return of(this.mockStudents);
   }
 
-  addStudent(student: Omit<Student, 'id'>): void {
-    const currentStudents = this.students.getValue();
-    const newId = currentStudents.length ? Math.max(...currentStudents.map(s => s.id)) + 1 : 1;
-    this.students.next([...currentStudents, { ...student, id: newId }]);
+  get(id: number): Observable<Student> {
+    const student = this.mockStudents.find(s => s.id === id);
+    return of(student as Student);
   }
 
-  updateStudent(updatedStudent: Student): void {
-    const currentStudents = this.students.getValue();
-    const index = currentStudents.findIndex(s => s.id === updatedStudent.id);
+  create(student: Student): Observable<Student> {
+    const newStudent = {
+      ...student,
+      id: this.mockStudents.length + 1
+    };
+    this.mockStudents.push(newStudent);
+    return of(newStudent);
+  }
+
+  update(id: number, student: Student): Observable<Student> {
+    const index = this.mockStudents.findIndex(s => s.id === id);
     if (index !== -1) {
-      currentStudents[index] = updatedStudent;
-      this.students.next([...currentStudents]);
+      this.mockStudents[index] = { ...this.mockStudents[index], ...student };
+      return of(this.mockStudents[index]);
     }
+    return of({} as Student);
   }
 
-  deleteStudent(id: number): void {
-    const currentStudents = this.students.getValue();
-    this.students.next(currentStudents.filter(student => student.id !== id));
+  delete(id: number): Observable<void> {
+    const index = this.mockStudents.findIndex(s => s.id === id);
+    if (index !== -1) {
+      this.mockStudents.splice(index, 1);
+    }
+    return of(void 0);
   }
 }
