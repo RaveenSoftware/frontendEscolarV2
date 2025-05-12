@@ -18,6 +18,7 @@ import HorarioManagementComponent from './components/horario/horario.component';
 import { AulaHorarioManagementComponent } from './components/aula-horario/aula-horario.component';
 import { NotaManagementComponent } from './components/nota/nota.component';
 import { PoligrafoManagementComponent } from './components/poligrafo/poligrafo.component';
+import { RolManagementComponent } from './components/rol/rol-management.component';
 
 export const routes: Routes = [
   // Solo el componente de login se carga para esta ruta
@@ -29,26 +30,24 @@ export const routes: Routes = [
   { path: 'teacher-dashboard', component: StudentManagementComponent, canActivate: [AuthGuard], data: { userType: 'teacher' }},
   { path: 'tipo-genero', component: TipoGeneroManagementComponent, canActivate: [AuthGuard], data: { userType: 'admin' }},
   { path: 'tipo-documento', component: TipoDocumentoManagementComponent, canActivate: [AuthGuard], data: { userType: 'admin' }},
-  {path: 'asignaturas' , component: AsignaturaManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
-  {path: 'pensums' , component: PensumManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
-  {path: 'semestreAcademicos' , component: SemestreAcademicoManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
-  {path: 'cursos' , component: CursoManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
-  {path: 'asesorias' , component: AsesoriaManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
-  {path: 'facultad' , component: FacultadManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
-  {path: 'persona' , component: PersonaManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
-  {path: 'teacher' , component: TeacherManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
-
-  {path: 'aula' , component: AulaManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
-  {path: 'horario' , component: HorarioManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
-  {path: 'aula-horario' , component: AulaHorarioManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
-  {path: 'nota' , component: NotaManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
-  {path: 'poligrafo' , component: PoligrafoManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
+  { path: 'asignaturas' , component: AsignaturaManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
+  { path: 'pensums' , component: PensumManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
+  { path: 'semestreAcademicos' , component: SemestreAcademicoManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
+  { path: 'cursos' , component: CursoManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
+  { path: 'asesorias' , component: AsesoriaManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
+  { path: 'facultad' , component: FacultadManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
+  { path: 'persona' , component: PersonaManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
+  { path: 'teacher' , component: TeacherManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
+  { path: 'aula' , component: AulaManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
+  { path: 'horario' , component: HorarioManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
+  { path: 'aula-horario' , component: AulaHorarioManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
+  { path: 'nota' , component: NotaManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
+  { path: 'poligrafo' , component: PoligrafoManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
+  { path: 'roles' , component: RolManagementComponent, canActivate:[AuthGuard], data: {userType: 'admin'}},
 
   // Ruta por defecto redirige al login
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   // Redirige a login para cualquier ruta no definida
   { path: '**', redirectTo: 'login' }
-
-  
 ];
