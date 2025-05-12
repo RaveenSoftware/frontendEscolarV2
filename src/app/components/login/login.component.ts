@@ -105,7 +105,7 @@ import { AuthService } from 'src/app/services/auth.service';
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('../../assets/fondo.png') center/cover;
+      background: url('src/assets/fondo.png') center/cover;
       opacity: 0.1;
       z-index: 1;
     }
