@@ -13,7 +13,6 @@ import { AuthService } from 'src/app/services/auth.service';
       <!-- Logo Section -->
       <div class="logo-section">
         <img src="assets/logoudes.png" alt="UDES Logo" class="main-logo">
-        <div class="overlay"></div>
       </div>
 
       <!-- Form Section -->
@@ -84,30 +83,16 @@ import { AuthService } from 'src/app/services/auth.service';
 
     .logo-section {
       flex: 1;
-      position: relative;
-      background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
     }
 
     .main-logo {
       width: 80%;
       max-width: 400px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('src/assets/fondo.png') center/cover;
-      opacity: 0.1;
-      z-index: 1;
+      object-fit: contain;
     }
 
     .form-section {
