@@ -34,6 +34,9 @@ import { TipoDocumento } from "src/app/models/tipo-documento.model";
               formControlName="nombre"
               required
             />
+            <div class="error-message" *ngIf="form.get('nombre')?.touched && form.get('nombre')?.errors?.['required']">
+              El nombre es requerido
+            </div>
           </div>
           <div class="form-group">
             <label>Estado:</label>
@@ -43,7 +46,7 @@ import { TipoDocumento } from "src/app/models/tipo-documento.model";
             </select>
           </div>
           <div class="form-actions">
-            <button type="submit" class="btn-save">Guardar</button>
+            <button type="submit" class="btn-save" [disabled]="form.invalid">Guardar</button>
             <button type="button" class="btn-cancel" (click)="cancelForm()">
               Cancelar
             </button>
@@ -95,189 +98,193 @@ import { TipoDocumento } from "src/app/models/tipo-documento.model";
     styles: [
         `
      .tipo-documento-management {
-  padding: 2rem;
-}
+      padding: 2rem;
+    }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
 
-.btn-add {
-  background: #1a237e;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
+    .btn-add {
+      background: #1a237e;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-.tipo-documento-form {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    .tipo-documento-form {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-.form-group {
-  margin-bottom: 1rem;
-}
+    .form-group {
+      margin-bottom: 1rem;
+    }
 
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-}
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
 
-.form-group input,
-.form-group select {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
 
-.form-actions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
+    .error-message {
+      color: #dc3545;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
 
-.btn-save {
-  background: #1a237e;
-  color: white;
-}
+    .form-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
 
-.btn-cancel {
-  background: #666;
-  color: white;
-}
+    .btn-save {
+      background: #1a237e;
+      color: white;
+    }
 
-.btn-save,
-.btn-cancel {
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-}
+    .btn-cancel {
+      background: #666;
+      color: white;
+    }
 
-.tipo-documento-table {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow-x: auto;
-}
+    .btn-save,
+    .btn-cancel {
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+    .tipo-documento-table {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      overflow-x: auto;
+    }
 
-th,
-td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
 
-th {
-  background: #f5f5f5;
-}
+    th,
+    td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
 
-.actions {
-  display: flex;
-  gap: 0.5rem;
-}
+    th {
+      background: #f5f5f5;
+    }
 
-.btn-edit,
-.btn-delete {
-  padding: 0.5rem;
-  border-radius: 4px;
-}
+    .actions {
+      display: flex;
+      gap: 0.5rem;
+    }
 
-.btn-edit {
-  color: #1a237e;
-}
+    .btn-edit,
+    .btn-delete {
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
 
-.btn-delete {
-  color: #dc3545;
-}
+    .btn-edit {
+      color: #1a237e;
+    }
 
-.status-badge {
-  padding: 0.25rem 0.5rem;
-  border-radius: 999px;
-  font-size: 0.875rem;
-}
+    .btn-delete {
+      color: #dc3545;
+    }
 
-.status-badge.active {
-  background: #e8f5e9;
-  color: #2e7d32;
-}
+    .status-badge {
+      padding: 0.25rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+    }
 
-.status-badge.inactive {
-  background: #ffebee;
-  color: #c62828;
-}
+    .status-badge.active {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
 
-.btn-add,
-.btn-save,
-.btn-cancel,
-.btn-edit,
-.btn-delete {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+    .status-badge.inactive {
+      background: #ffebee;
+      color: #c62828;
+    }
 
-.btn-add:hover {
-  background-color: #303f9f;
-}
+    .btn-add,
+    .btn-save,
+    .btn-cancel,
+    .btn-edit,
+    .btn-delete {
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-.btn-save:hover {
-  background-color: #303f9f;
-}
+    .btn-add:hover {
+      background-color: #303f9f;
+    }
 
-.btn-cancel:hover {
-  background-color: #555;
-}
+    .btn-save:hover {
+      background-color: #303f9f;
+    }
 
-.btn-edit:hover {
-  color: #303f9f;
-}
+    .btn-cancel:hover {
+      background-color: #555;
+    }
 
-.btn-delete:hover {
-  color: #b71c1c;
-}
+    .btn-edit:hover {
+      color: #303f9f;
+    }
 
-.status-badge {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+    .btn-delete:hover {
+      color: #b71c1c;
+    }
 
-.status-badge.active:hover {
-  background: #c8e6c9;
-  color: #1b5e20;
-}
+    .status-badge {
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-.status-badge.inactive:hover {
-  background: #ffcdd2;
-  color: #b71c1c;
-}
+    .status-badge.active:hover {
+      background: #c8e6c9;
+      color: #1b5e20;
+    }
 
-
+    .status-badge.inactive:hover {
+      background: #ffcdd2;
+      color: #b71c1c;
+    }
     `,
     ],
 })
 export default class TipoDocumentoManagementComponent implements OnInit {
-    tipoDocumento: TipoDocumento[] = [];
+    tiposDocumentos: TipoDocumento[] = [];
     showForm = false;
     editingTipoDocumento: TipoDocumento | null = null;
 
     private TipoDocumentoService = inject(TipoDocumentoService);
     private router = inject(Router);
     private route = inject(ActivatedRoute);
-    tiposDocumentos: TipoDocumento[] = [];
     private fb = inject(FormBuilder);
+
     form: FormGroup = this.fb.group({
-        nombre: ["", [Validators.required]],
+        nombre: ['', [Validators.required]],
         estado: [true, [Validators.required]],
     });
 
@@ -334,7 +341,6 @@ export default class TipoDocumentoManagementComponent implements OnInit {
 
     create() {
         if (this.form.invalid) {
-            alert("Por favor, completa todos los campos obligatorios");
             return;
         }
 
@@ -346,25 +352,25 @@ export default class TipoDocumentoManagementComponent implements OnInit {
                 tipoDocumento
             ).subscribe({
                 next: () => {
-                    alert("Registro actualizado con éxito");
+                    alert("Tipo de documento actualizado con éxito");
                     this.loadDocumentos();
                     this.cancelForm();
                 },
                 error: (err) => {
                     console.error("Error al actualizar:", err);
-                    alert("Hubo un error al actualizar el registro");
+                    alert("Hubo un error al actualizar el tipo de documento");
                 },
             });
         } else {
             this.TipoDocumentoService.create(tipoDocumento).subscribe({
                 next: () => {
-                    alert("Registro creado con éxito");
+                    alert("Tipo de documento creado con éxito");
                     this.loadDocumentos();
                     this.cancelForm();
                 },
                 error: (err) => {
                     console.error("Error al crear:", err);
-                    alert("Hubo un error al crear el registro");
+                    alert("Hubo un error al crear el tipo de documento");
                 },
             });
         }
