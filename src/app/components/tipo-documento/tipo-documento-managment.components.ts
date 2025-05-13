@@ -269,8 +269,7 @@ import { TipoDocumento } from "src/app/models/tipo-documento.model";
     .status-badge.inactive:hover {
       background: #ffcdd2;
       color: #b71c1c;
-    }
-    `,
+    }`,
     ],
 })
 export default class TipoDocumentoManagementComponent implements OnInit {
