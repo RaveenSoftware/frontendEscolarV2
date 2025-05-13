@@ -20,11 +20,21 @@ export class TipoDocumentoService {
   }
 
   create(tipoDocumento: TipoDocumento): Observable<TipoDocumento> {
-    return this.http.post<TipoDocumento>(this.apiUrl, tipoDocumento);
+    // Remove undefined properties before sending
+    const cleanData = {
+      nombre: tipoDocumento.nombre,
+      estado: tipoDocumento.estado ?? true
+    };
+    return this.http.post<TipoDocumento>(this.apiUrl, cleanData);
   }
 
   update(id: number, tipoDocumento: TipoDocumento): Observable<TipoDocumento> {
-    return this.http.put<TipoDocumento>(`${this.apiUrl}/${id}`, tipoDocumento);
+    // Remove undefined properties before sending
+    const cleanData = {
+      nombre: tipoDocumento.nombre,
+      estado: tipoDocumento.estado ?? true
+    };
+    return this.http.put<TipoDocumento>(`${this.apiUrl}/${id}`, cleanData);
   }
 
   delete(id: number): Observable<void> {

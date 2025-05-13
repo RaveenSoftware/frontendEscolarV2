@@ -20,11 +20,21 @@ export class TipoGeneroService {
   }
 
   create(tipoGenero: TipoGenero): Observable<TipoGenero> {
-    return this.http.post<TipoGenero>(this.apiUrl, tipoGenero);
+    // Remove undefined properties before sending
+    const cleanData = {
+      nombre: tipoGenero.nombre,
+      estado: tipoGenero.estado ?? true
+    };
+    return this.http.post<TipoGenero>(this.apiUrl, cleanData);
   }
 
   update(id: number, tipoGenero: TipoGenero): Observable<TipoGenero> {
-    return this.http.put<TipoGenero>(`${this.apiUrl}/${id}`, tipoGenero);
+    // Remove undefined properties before sending
+    const cleanData = {
+      nombre: tipoGenero.nombre,
+      estado: tipoGenero.estado ?? true
+    };
+    return this.http.put<TipoGenero>(`${this.apiUrl}/${id}`, cleanData);
   }
 
   delete(id: number): Observable<void> {
