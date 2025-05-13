@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 import { Student } from '../models/student.model';
 
 @Injectable({
@@ -9,80 +8,60 @@ import { Student } from '../models/student.model';
 })
 export class StudentService {
   private apiUrl = 'api/v1/estudiantes';
+  
+  // Mock data for local development
+  private mockStudents: Student[] = [
+    {
+      id: 1,
+      nombre: 'John Doe',
+      telefono: '3001234567',
+      correoPersonal: 'john.doe@email.com',
+      fechaNacimiento: '1995-05-15',
+      numeroDocumento: '1234567890',
+      estado: true,
+      tipoDocumentoId: 1,
+      generoId: 1,
+      rolId: 1,
+      programaId: 1,
+      codigoInstitucional: 'EST001',
+      correoInstitucional: 'john.doe@udes.edu.co'
+    }
+  ];
 
   constructor(private http: HttpClient) {}
 
-  private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'An error occurred';
-    if (error.error instanceof ErrorEvent) {
-      // Client-side error
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // Server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-      if (error.status === 0) {
-        errorMessage = 'Unable to connect to the server. Please verify that the backend service is running.';
-      }
-    }
-    console.error(errorMessage);
-    return throwError(() => new Error(errorMessage));
-  }
-
   list(): Observable<Student[]> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    });
-
-    return this.http.get<Student[]>(this.apiUrl, { headers })
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      );
+    return of(this.mockStudents);
   }
 
   get(id: number): Observable<Student> {
-    return this.http.get<Student>(`${this.apiUrl}/${id}`)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      );
+    const student = this.mockStudents.find(s => s.id === id);
+    return of(student as Student);
   }
 
   create(student: Student): Observable<Student> {
-    const studentData = {
+    const newStudent = {
       ...student,
-      tipoDocumento: { id: student.tipoDocumentoId },
-      genero: { id: student.generoId },
-      programa: { id: student.programaId },
-      rol: { id: 3 }
+      id: this.mockStudents.length + 1
     };
-
-    return this.http.post<Student>(this.apiUrl, studentData)
-      .pipe(
-        catchError(this.handleError)
-      );
+    this.mockStudents.push(newStudent);
+    return of(newStudent);
   }
 
   update(id: number, student: Student): Observable<Student> {
-    const studentData = {
-      ...student,
-      tipoDocumento: { id: student.tipoDocumentoId },
-      genero: { id: student.generoId },
-      programa: { id: student.programaId },
-      rol: { id: 3 }
-    };
-
-    return this.http.put<Student>(`${this.apiUrl}/${id}`, studentData)
-      .pipe(
-        catchError(this.handleError)
-      );
+    const index = this.mockStudents.findIndex(s => s.id === id);
+    if (index !== -1) {
+      this.mockStudents[index] = { ...this.mockStudents[index], ...student };
+      return of(this.mockStudents[index]);
+    }
+    return of({} as Student);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`)
-      .pipe(
-        catchError(this.handleError)
-      );
+    const index = this.mockStudents.findIndex(s => s.id === id);
+    if (index !== -1) {
+      this.mockStudents.splice(index, 1);
+    }
+    return of(void 0);
   }
 }
