@@ -6,9 +6,6 @@
     "logLevel": "debug",
     "timeout": 30000,
     "proxyTimeout": 30000,
-    "pathRewrite": {
-      "^/api": "/api"
-    },
     "headers": {
       "Connection": "keep-alive"
     }

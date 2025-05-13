@@ -12,12 +12,10 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(numeroDocumento: string, password: string): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    const body = new URLSearchParams();
-    body.set('numeroDocumento', numeroDocumento);
-    body.set('password', password);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const body = { numeroDocumento, password };
     
-    return this.http.post(this.apiUrl, body.toString(), { headers });
+    return this.http.post(this.apiUrl, body, { headers });
   }
 
   logout() {
