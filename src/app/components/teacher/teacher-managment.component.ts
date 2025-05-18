@@ -81,6 +81,16 @@ import { Teacher } from '../../models/teacher.model';
                 <input type="email" formControlName="correoPersonal" required>
               </div>
             </div>
+
+            <div class="form-group">
+              <label>Rol:</label>
+              <select formControlName="rolId" required>
+                <option [ngValue]="null">Seleccione...</option>
+                <option *ngFor="let rol of roles" [value]="rol.id">
+                  {{ rol.nombre }}
+                </option>
+              </select>
+            </div>
           </div>
 
           <!-- Academic Data Section -->
@@ -112,16 +122,6 @@ import { Teacher } from '../../models/teacher.model';
             <div class="form-group">
               <label>Especialidad:</label>
               <input type="text" formControlName="especialidad" required>
-            </div>
-
-            <div class="form-group">
-              <label>Rol:</label>
-              <select formControlName="rolId" required>
-                <option [ngValue]="null">Seleccione...</option>
-                <option *ngFor="let rol of roles" [value]="rol.id">
-                  {{ rol.nombre }}
-                </option>
-              </select>
             </div>
 
             <div class="form-group">
