@@ -34,6 +34,10 @@ import { RouterModule } from '@angular/router';
             <i class="fas fa-chalkboard-teacher"></i>
             <span *ngIf="!isCollapsed">Docentes</span>
           </a>
+          <a [routerLink]="'/administrators'" routerLinkActive="active" class="menu-item">
+            <i class="fas fa-user-tie"></i>
+            <span *ngIf="!isCollapsed">Administradores</span>
+          </a>
           <a [routerLink]="'/cursos'" routerLinkActive="active" class="menu-item">
             <i class="fas fa-book"></i>
             <span *ngIf="!isCollapsed">Cursos</span>
@@ -73,6 +77,10 @@ import { RouterModule } from '@angular/router';
           <a [routerLink]="'/tipo-documento'" routerLinkActive="active" class="menu-item">
             <i class="fas fa-id-card"></i>
             <span *ngIf="!isCollapsed">Tipos de Documento</span>
+          </a>
+          <a [routerLink]="'/roles'" routerLinkActive="active" class="menu-item">
+            <i class="fas fa-user-shield"></i>
+            <span *ngIf="!isCollapsed">Roles</span>
           </a>
         </div>
 
