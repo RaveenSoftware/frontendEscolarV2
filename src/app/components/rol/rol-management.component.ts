@@ -33,11 +33,11 @@ import { Rol } from '../../models/rol.model';
           </div>
 
           <div class="form-group">
-            <label>Descripción:</label>
-            <textarea 
-              formControlName="descripcion" 
-              rows="3"
-            ></textarea>
+            <label>Estado:</label>
+            <select formControlName="estado">
+              <option [ngValue]="true">Activo</option>
+              <option [ngValue]="false">Inactivo</option>
+            </select>
           </div>
 
           <div class="form-actions">
@@ -57,7 +57,7 @@ import { Rol } from '../../models/rol.model';
             <tr>
               <th>ID</th>
               <th>Nombre</th>
-              <th>Descripción</th>
+              <th>Estado</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -65,7 +65,11 @@ import { Rol } from '../../models/rol.model';
             <tr *ngFor="let rol of roles">
               <td>{{ rol.id }}</td>
               <td>{{ rol.nombre }}</td>
-              <td>{{ rol.descripcion }}</td>
+              <td>
+                <span [class]="'status-badge ' + (rol.estado ? 'active' : 'inactive')">
+                  {{ rol.estado ? 'Activo' : 'Inactivo' }}
+                </span>
+              </td>
               <td class="actions">
                 <button class="btn-edit" (click)="editRol(rol)">
                   <i class="fas fa-edit"></i>
@@ -122,7 +126,7 @@ import { Rol } from '../../models/rol.model';
     }
 
     .form-group input,
-    .form-group textarea {
+    .form-group select {
       width: 100%;
       padding: 0.75rem;
       border: 1px solid #ddd;
@@ -132,7 +136,7 @@ import { Rol } from '../../models/rol.model';
     }
 
     .form-group input:focus,
-    .form-group textarea:focus {
+    .form-group select:focus {
       border-color: #1a237e;
       box-shadow: 0 0 0 2px rgba(26, 35, 126, 0.1);
       outline: none;
@@ -231,7 +235,7 @@ export class RolManagementComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       nombre: ['', [Validators.required]],
-      descripcion: ['']
+      estado: [true]
     });
   }
 
@@ -267,7 +271,7 @@ export class RolManagementComponent implements OnInit {
     this.editingRol = rol;
     this.form.patchValue({
       nombre: rol.nombre,
-      descripcion: rol.descripcion
+      estado: rol.estado
     });
   }
 
